@@ -1,0 +1,336 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprite.png" type="Texture" id=2]
+[ext_resource path="res://floor.gd" type="Script" id=3]
+[ext_resource path="res://enemy_creator.gd" type="Script" id=4]
+[ext_resource path="res://game.gd" type="Script" id=5]
+[ext_resource path="res://Button.gd" type="Script" id=6]
+[ext_resource path="res://assets/down.png" type="Texture" id=7]
+[ext_resource path="res://assets/up.png" type="Texture" id=8]
+[ext_resource path="res://assets/restart-button.png" type="Texture" id=9]
+[ext_resource path="res://assets/emulogic.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://score.gd" type="Script" id=11]
+[ext_resource path="res://controller.gd" type="Script" id=12]
+[ext_resource path="res://high_score.gd" type="Script" id=13]
+[ext_resource path="res://cactus_creator.gd" type="Script" id=14]
+
+[sub_resource type="RayShape2D" id=1]
+length = 45.6372
+
+[sub_resource type="Animation" id=2]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 2122, 3, 83, 94 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 20.0
+height = 50.0
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 1678, 3, 86, 94 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.5
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.26 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 1855, 3, 86, 94 ), Rect2( 1943, 3, 86, 94 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 60, 20 )
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 2206, 3, 118, 94 ), Rect2( 2324, 3, 118, 94 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3.151, 6 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 440.423, 33.0853 )
+
+[sub_resource type="Animation" id=9]
+length = 3.0
+loop = true
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.98 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 2, 104, 800, 129 ), Rect2( 1202, 104, 800, 129 ) ]
+}
+
+[sub_resource type="DynamicFont" id=10]
+size = 14
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 14
+font_data = ExtResource( 10 )
+
+[node name="game" type="Node2D"]
+position = Vector2( 221.137, 216.169 )
+script = ExtResource( 5 )
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( -64.2392, 18.0594 )
+script = ExtResource( 1 )
+
+[node name="floor_raycast" type="CollisionShape2D" parent="player"]
+position = Vector2( 0, -2.3327 )
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="player"]
+position = Vector2( 1.16638, 0 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 1678, 3, 86, 94 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
+anims/dying = SubResource( 2 )
+anims/idle = SubResource( 4 )
+anims/running = SubResource( 5 )
+anims/squatting = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D"]
+position = Vector2( 10, 0 )
+shape = SubResource( 3 )
+
+[node name="floor" type="StaticBody2D" parent="."]
+position = Vector2( 0.340914, 24.4934 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="floor"]
+position = Vector2( 178.364, 108.844 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 2, 104, 800, 129 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2( 219.377, 88.5011 )
+shape = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="floor"]
+anims/floor = SubResource( 9 )
+
+[node name="enemy_creator" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Button" type="TextureButton" parent="."]
+margin_left = 67.1056
+margin_top = -54.5918
+margin_right = 143.106
+margin_bottom = 12.4082
+texture_normal = ExtResource( 9 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="controller" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="up" type="TextureButton" parent="controller"]
+margin_left = 315.0
+margin_top = 34.0
+margin_right = 403.0
+margin_bottom = 124.0
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down" type="TextureButton" parent="controller"]
+margin_left = -203.0
+margin_top = 37.0
+margin_right = -110.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hud" type="Node2D" parent="."]
+
+[node name="score" type="Label" parent="hud"]
+margin_left = 322.207
+margin_top = -196.864
+margin_right = 404.207
+margin_bottom = -161.864
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "SCORE"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="high_score" type="Label" parent="hud"]
+margin_left = 52.8113
+margin_top = -198.369
+margin_right = 212.811
+margin_bottom = -178.369
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "HIGH SCORE"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="destroy_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="score_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="cactus_creator" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="spawn_timer" type="Timer" parent="."]
+wait_time = 1.2
+autostart = true
+[connection signal="game_over" from="player" to="cactus_creator" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="enemy_creator" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="floor" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="hud/score" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="hud/high_score" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="Button" method="_on_player_game_over"]
+[connection signal="area_entered" from="player/Area2D" to="player" method="_on_Area2D_area_entered"]
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
+[connection signal="button_down" from="controller/up" to="player" method="_on_up_button_down"]
+[connection signal="button_up" from="controller/up" to="player" method="_on_up_button_up"]
+[connection signal="button_down" from="controller/down" to="player" method="_on_down_button_down"]
+[connection signal="button_up" from="controller/down" to="player" method="_on_down_button_up"]
+[connection signal="timeout" from="destroy_timer" to="cactus_creator" method="_on_destroy_timer_timeout"]
+[connection signal="timeout" from="destroy_timer" to="enemy_creator" method="_on_Timer_timeout"]
+[connection signal="timeout" from="score_timer" to="hud/score" method="_on_Timer2_timeout"]
+[connection signal="timeout" from="spawn_timer" to="cactus_creator" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="spawn_timer" to="enemy_creator" method="_on_spawn_timer_timeout"]
