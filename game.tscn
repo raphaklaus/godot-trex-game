@@ -205,7 +205,7 @@ shape = SubResource( 1 )
 position = Vector2( 1.16638, 0 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 2030, 3, 88, 94 )
+region_rect = Rect2( 1678, 3, 86, 94 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
 anims/dying = SubResource( 2 )
@@ -216,8 +216,8 @@ anims/squatting = SubResource( 7 )
 [node name="Area2D" type="Area2D" parent="player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D"]
-position = Vector2( 0, 10 )
-shape = SubResource( 6 )
+position = Vector2( 10, 0 )
+shape = SubResource( 3 )
 
 [node name="floor" type="StaticBody2D" parent="."]
 position = Vector2( 0.340914, 24.4934 )
