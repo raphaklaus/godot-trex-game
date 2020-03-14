@@ -75,9 +75,9 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-length = 0.5
+length = 0.3
 loop = true
-step = 0.01
+step = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
@@ -85,7 +85,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.26 ),
+"times": PoolRealArray( 0, 0.152194 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Rect2( 1855, 3, 86, 94 ), Rect2( 1943, 3, 86, 94 ) ]
@@ -119,7 +119,7 @@ tracks/2/keys = {
 extents = Vector2( 50, 15 )
 
 [sub_resource type="Animation" id=7]
-length = 0.5
+length = 0.3
 loop = true
 step = 0.01
 tracks/0/type = "value"
@@ -129,7 +129,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
+"times": PoolRealArray( 0, 0.153624 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Rect2( 2206, 3, 118, 94 ), Rect2( 2324, 3, 118, 94 ) ]
@@ -160,7 +160,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 440.423, 33.0853 )
+extents = Vector2( 440.423, 28.3146 )
 
 [sub_resource type="Animation" id=9]
 length = 3.0
@@ -173,10 +173,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.98 ),
+"times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 2, 104, 800, 129 ), Rect2( 1202, 104, 800, 129 ) ]
+"values": [ Rect2( 2, 104, 800, 129 ), Rect2( 1761, 104, 800, 129 ) ]
 }
 
 [sub_resource type="DynamicFont" id=10]
@@ -205,7 +205,7 @@ shape = SubResource( 1 )
 position = Vector2( 1.16638, 0 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 1678, 3, 86, 94 )
+region_rect = Rect2( 1855, 3, 86, 94 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
 anims/dying = SubResource( 2 )
@@ -216,7 +216,7 @@ anims/squatting = SubResource( 7 )
 [node name="Area2D" type="Area2D" parent="player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D"]
-position = Vector2( 10, 0 )
+position = Vector2( 5, 0 )
 shape = SubResource( 3 )
 
 [node name="floor" type="StaticBody2D" parent="."]
@@ -315,9 +315,9 @@ script = ExtResource( 14 )
 wait_time = 1.2
 autostart = true
 [connection signal="game_over" from="player" to="spawner" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="floor" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="Button" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/score" method="_on_player_game_over"]
-[connection signal="game_over" from="player" to="floor" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/high_score" method="_on_player_game_over"]
 [connection signal="area_entered" from="player/Area2D" to="player" method="_on_Area2D_area_entered"]
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]

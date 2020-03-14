@@ -64,13 +64,13 @@ func generate_starting_position():
 		
 func generate_cactus():
 	cactus_instance = cactus.instance()
-	cactus_instance.init(Vector2(900, 65), "big")
+	cactus_instance.init(Vector2(900, 65), "big", (1200 / 180) * 60 * -1)
 	cactuses.append(cactus_instance)
 	add_child(cactus_instance)
 
 func generate_enemy():
 	enemy_instance = enemy.instance()
-	enemy_instance.init(generate_starting_position())
+	enemy_instance.init(generate_starting_position(), 600)
 	enemies.append(enemy_instance)
 	add_child(enemy_instance)
 	

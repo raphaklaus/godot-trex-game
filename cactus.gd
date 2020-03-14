@@ -14,7 +14,7 @@ var velocity = Vector2()
 #	else:
 #
 
-func init(pos, anim):
+func init(pos, anim, velx):
 	if randf() > 0.5:
 		$AnimationPlayer.play("big")
 	else:
@@ -22,11 +22,11 @@ func init(pos, anim):
 
 	position.x = pos.x
 	position.y = pos.y
-	velocity.x = (118 / 180.0) * 60 * 10 * -1
+	velocity.x = -9.783333333333333
 
 func stop():
 	velocity.x = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += velocity * delta
+	position.x += velocity.x * 60 * delta #velocity * delta

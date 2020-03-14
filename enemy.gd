@@ -5,8 +5,9 @@ extends Node2D
 # var b = "text"
 var velocity = Vector2()
 # Called when the node enters the scene tree for the first time.
-func init(pos):
+func init(pos, velx):
 	position.y = pos
+	velocity.x = -velx
 
 func stop():
 	$AnimationPlayer.stop()
@@ -14,7 +15,6 @@ func stop():
 
 func _ready():
 #	print_debug(pos)
-	velocity.x = -650
 	$AnimationPlayer.play("flying")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
