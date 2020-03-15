@@ -27,17 +27,44 @@ jobs:
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.2/Godot_v3.2-stable_export_templates.tpz
         godot_template_version: 3.2.stable
         relative_project_path: ./
-        create_release: true
+        create_release: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Deploy Linux to Itch.io
-      uses: josephbmanley/butler-publish-itchio-action@master
-      env:
-        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-        CHANNEL: linux
-        ITCH_GAME: rex-game
-        ITCH_USER: raphaklaus
-        PACKAGE: /home/runner/.local/share/godot/dist/LinuxX11.zip
+    
+    - name: artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: my-artifact
+        path: dist
+
+    # - name: ls dist
+    #   run: |
+    #     ls ./dist
+    # - run: find -name '*.zip' -exec sh -c 'unzip -d "${1%.*}" "$1"' _ {} \; 
+    # - name: Upload LinuxX11
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: LinuxX11
+    #     path: ./dist/LinuxX11
+    # - name: Upload Mac OSX
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: Mac OSX
+    #     path: ./dist/Mac OSX
+    # - name: Upload Windows Desktop
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: Windows Desktop
+    #     path: ./dist/Windows Desktop
+
+    # - name: Deploy Linux to Itch.io
+    #   uses: josephbmanley/butler-publish-itchio-action@master
+    #   env:
+    #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+    #     CHANNEL: linux
+    #     ITCH_GAME: rex-game
+    #     ITCH_USER: raphaklaus
+    #     PACKAGE: /home/runner/.local/share/godot/dist/LinuxX11.zip
     # - name: Deploy Windows to Itch.io
     # - uses: josephbmanley/butler-publish-itchio-action@master
     #   env:
