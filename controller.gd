@@ -8,8 +8,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if OS.get_name() == "X11":
-		visible = false
+	if OS.get_name() == "Android":
+		visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

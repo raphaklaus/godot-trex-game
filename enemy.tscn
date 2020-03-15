@@ -3,9 +3,11 @@
 [ext_resource path="res://enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "flying"
+length = 0.8
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
@@ -13,13 +15,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Rect2( 260, 14, 92, 68 ), Rect2( 352, 2, 92, 60 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30.7211, 23.6883 )
 
 [node name="enemy" type="Node2D" groups=[
@@ -34,11 +36,11 @@ region_enabled = true
 region_rect = Rect2( 352, 2, 92, 60 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/flying = SubResource( 2 )
+anims/flying = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -5.85376, 2.50871 )
 z_index = 1
-shape = SubResource( 1 )
+shape = SubResource( 2 )
