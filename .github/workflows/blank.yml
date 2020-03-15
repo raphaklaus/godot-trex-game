@@ -1,0 +1,5 @@
+- name: Build Godot
+  uses: josephbmanley/build-godot-action@v1.3.2
+  with:
+    # Name of the exported binary
+    name: Trex Game
