@@ -1,34 +1,31 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request 
-# events but only for the master branch
-on:
+on: 
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  # job id, can be anything
+  export_game:
+    # Always use ubuntu-latest for this action
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Job name, can be anything
+    name: Trex
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Build Godot
-        uses: josephbmanley/build-godot-action@v1.3.2
-        with:
-          # Name of the exported binary
-          name: Trex
-          # Name of the preset in `export_presets.cfg` to use
-          preset: linux
-
-
-          
+      # Always include the checkout step so that 
+      # your project is available for Godot to export
+    - name: checkout
+      uses: actions/checkout@v2.0.0
+    - name: export game
+      # Use version 1.2.0 (see releases for all versions)
+      uses: firebelley/godot-export@v1.2.0
+      with:
+        # Defining all the required inputs
+        # I used the mono version of Godot in this example
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.2.1/mono/Godot_v3.2.1-stable_mono_linux_headless_64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.2.1/mono/Godot_v3.2.1-stable_mono_export_templates.tpz
+        godot_template_version: 3.2.1.stable.mono
+        relative_project_path: ./
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
