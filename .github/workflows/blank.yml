@@ -30,14 +30,32 @@ jobs:
         create_release: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Deploy Linux to Itch.io
-      uses: josephbmanley/butler-publish-itchio-action@master
-      env:
-        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-        CHANNEL: linux
-        ITCH_GAME: rex-game
-        ITCH_USER: raphaklaus
-        PACKAGE: /home/runner/.local/share/godot/dist/LinuxX11.zip
+
+    - run: find -name '*.zip' -exec sh -c 'unzip -d "${1%.*}" "$1"' _ {} \; 
+    - name: Upload LinuxX11
+      uses: actions/upload-artifact@v1
+      with:
+        name: LinuxX11
+        path: ./exports/LinuxX11
+    - name: Upload Mac OSX
+      uses: actions/upload-artifact@v1
+      with:
+        name: Mac OSX
+        path: ./exports/Mac OSX
+    - name: Upload Windows Desktop
+      uses: actions/upload-artifact@v1
+      with:
+        name: Windows Desktop
+        path: ./exports/Windows Desktop
+
+    # - name: Deploy Linux to Itch.io
+    #   uses: josephbmanley/butler-publish-itchio-action@master
+    #   env:
+    #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+    #     CHANNEL: linux
+    #     ITCH_GAME: rex-game
+    #     ITCH_USER: raphaklaus
+    #     PACKAGE: /home/runner/.local/share/godot/dist/LinuxX11.zip
     # - name: Deploy Windows to Itch.io
     # - uses: josephbmanley/butler-publish-itchio-action@master
     #   env:
