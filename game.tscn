@@ -317,8 +317,8 @@ wait_time = 1.2
 autostart = true
 [connection signal="game_over" from="player" to="spawner" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="floor" method="_on_player_game_over"]
-[connection signal="game_over" from="player" to="Button" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/score" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="Button" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/high_score" method="_on_player_game_over"]
 [connection signal="area_entered" from="player/Area2D" to="player" method="_on_Area2D_area_entered"]
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
