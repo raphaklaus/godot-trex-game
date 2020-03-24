@@ -6,11 +6,15 @@ var cactus_instance
 var enemy = preload("res://enemy.tscn")
 var enemy_instance
 
+var cloud = preload("res://cloud.tscn")
+var cloud_instance
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 var cactuses = []
 var enemies = []
+var clouds = []
 
 var next_to_spawn = "cactus"
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +25,6 @@ export var spawn = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 #func _physics_process(delta):
-#	print_debug(cactuses)
 
 func _on_destroy_timer_timeout():
 	for cactus in cactuses:
@@ -35,6 +38,12 @@ func _on_destroy_timer_timeout():
 		if enemy.get_global_position().x < -width:
 			enemy.queue_free()
 			enemies.erase(enemy)
+			
+	for cloud in clouds:
+		var width = cloud.get_node("Sprite").region_rect.size.x
+		if cloud.get_global_position().x < -width:
+			cloud.queue_free()
+			clouds.erase(cloud)
 
 func _on_player_game_over():
 	spawn = false
@@ -44,6 +53,10 @@ func _on_player_game_over():
 	# TODO: Unify this loop
 	for enemy in enemies:
 		enemy.stop()
+
+	for cloud in clouds:
+		cloud.stop()
+
 
 func _on_spawn_timer_timeout():
 	if spawn and randf() > 0.6:
@@ -64,7 +77,7 @@ func generate_starting_position():
 		
 func generate_cactus():
 	cactus_instance = cactus.instance()
-	cactus_instance.init(Vector2(900, 65), "big", (1200 / 180) * 60 * -1)
+	cactus_instance.init(Vector2(900, 64), "big", 500 * -1)
 	cactuses.append(cactus_instance)
 	add_child(cactus_instance)
 
@@ -73,9 +86,20 @@ func generate_enemy():
 	enemy_instance.init(generate_starting_position(), 600)
 	enemies.append(enemy_instance)
 	add_child(enemy_instance)
+
+func generate_cloud():
+	cloud_instance = cloud.instance()
+	cloud_instance.init(Vector2(600, rand_range(-100, 50)))
+	clouds.append(cloud_instance)
+	add_child(cloud_instance)
 	
 func select_next():
 	if randf() > 0.5:
 		return "cactus"
 	else:
 		return "enemy"
+
+
+func _on_cloud_timer_timeout():
+	if randf() > 0.2:
+		generate_cloud()

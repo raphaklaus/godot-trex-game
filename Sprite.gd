@@ -1,21 +1,22 @@
-extends Node2D
+extends Sprite
+
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var velocity = Vector2()
+var pixel_frame = 0
+var stop = false
 # Called when the node enters the scene tree for the first time.
-func init(pos, velx):
-	position.y = pos
-	velocity.x = -velx
-
-func stop():
-	$AnimationPlayer.stop()
-	velocity.x = 0
-
 func _ready():
-	$AnimationPlayer.play("flying")
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += velocity * delta
+	if not stop:
+		region_rect = Rect2(pixel_frame, 104, 640, 26)
+		pixel_frame += 500 * delta
+
+
+func _on_player_game_over():
+	stop = true

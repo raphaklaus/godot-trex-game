@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite.png" type="Texture" id=2]
 [ext_resource path="res://floor.gd" type="Script" id=3]
+[ext_resource path="res://sun.gd" type="Script" id=4]
 [ext_resource path="res://game.gd" type="Script" id=5]
 [ext_resource path="res://Button.gd" type="Script" id=6]
 [ext_resource path="res://assets/down.png" type="Texture" id=7]
@@ -13,6 +14,7 @@
 [ext_resource path="res://controller.gd" type="Script" id=12]
 [ext_resource path="res://high_score.gd" type="Script" id=13]
 [ext_resource path="res://spawner.gd" type="Script" id=14]
+[ext_resource path="res://Sprite.gd" type="Script" id=15]
 
 [sub_resource type="RayShape2D" id=1]
 length = 45.6372
@@ -162,23 +164,6 @@ tracks/2/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 440.423, 28.3146 )
 
-[sub_resource type="Animation" id=9]
-length = 3.0
-loop = true
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Rect2( 2, 104, 800, 129 ), Rect2( 1761, 104, 800, 129 ) ]
-}
-
 [sub_resource type="DynamicFont" id=10]
 size = 14
 font_data = ExtResource( 10 )
@@ -192,7 +177,7 @@ position = Vector2( 221.137, 216.169 )
 script = ExtResource( 5 )
 
 [node name="player" type="KinematicBody2D" parent="."]
-position = Vector2( -64.2392, 18.0594 )
+position = Vector2( -93.137, 23.831 )
 z_index = 1
 script = ExtResource( 1 )
 
@@ -220,24 +205,22 @@ position = Vector2( 5, 0 )
 shape = SubResource( 3 )
 
 [node name="floor" type="StaticBody2D" parent="."]
-position = Vector2( 0.340914, 24.4934 )
+position = Vector2( 2.86301, -0.169014 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="floor"]
-position = Vector2( 178.364, 108.844 )
+position = Vector2( 96, 72 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 2, 104, 800, 129 )
+region_rect = Rect2( 2, 104, 640, 18 )
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
-position = Vector2( 219.377, 88.5011 )
+position = Vector2( 218.522, 111.338 )
 shape = SubResource( 8 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="floor"]
-anims/floor = SubResource( 9 )
 
 [node name="Button" type="TextureButton" parent="."]
 margin_left = 67.1056
@@ -311,15 +294,31 @@ autostart = true
 
 [node name="spawner" type="Node2D" parent="."]
 script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="spawn_timer" type="Timer" parent="."]
 wait_time = 1.2
 autostart = true
+
+[node name="cloud_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="sun" type="Sprite" parent="."]
+position = Vector2( 468.346, -127.299 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 1074, 2, 79, 80 )
+script = ExtResource( 4 )
 [connection signal="game_over" from="player" to="spawner" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="floor/Sprite" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="floor" method="_on_player_game_over"]
-[connection signal="game_over" from="player" to="hud/score" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="Button" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="hud/score" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/high_score" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="sun" method="_on_player_game_over"]
 [connection signal="area_entered" from="player/Area2D" to="player" method="_on_Area2D_area_entered"]
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
 [connection signal="button_down" from="controller/up" to="player" method="_on_up_button_down"]
@@ -329,3 +328,4 @@ autostart = true
 [connection signal="timeout" from="destroy_timer" to="spawner" method="_on_destroy_timer_timeout"]
 [connection signal="timeout" from="score_timer" to="hud/score" method="_on_Timer2_timeout"]
 [connection signal="timeout" from="spawn_timer" to="spawner" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="cloud_timer" to="spawner" method="_on_cloud_timer_timeout"]

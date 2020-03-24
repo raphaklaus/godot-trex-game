@@ -64,7 +64,6 @@ func _on_down_button_up():
 func _on_Area2D_area_entered(area):
 	var body = area.get_parent()
 	if body.is_in_group("enemies"):
-		print_debug("collision on enemy")
 		$AnimationPlayer.play("dying")
 		emit_signal("game_over")
 		has_game_over = true
