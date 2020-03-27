@@ -51,6 +51,7 @@ func _process(delta):
 
 func _on_up_button_down():
 	if not is_jumping:
+		Global.play_jump_sound()
 		is_jumping = true
 		velocity.y -= JUMP_FORCE
 

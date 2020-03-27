@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Rex Game"
 run/main_scene="res://game.tscn"
-boot_splash/bg_color=Color( 0.870588, 0.870588, 0.870588, 1 )
+boot_splash/bg_color=Color( 0.890196, 0.890196, 0.890196, 1 )
 config/icon="res://assets/icon.png"
 
 [autoload]

@@ -316,13 +316,13 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="game_over" from="player" to="sun" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="spawner" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="floor/Sprite" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="floor" method="_on_player_game_over"]
-[connection signal="game_over" from="player" to="spawner" method="_on_player_game_over"]
-[connection signal="game_over" from="player" to="pause/Button" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/score" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/high_score" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="sun" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="pause/Button" method="_on_player_game_over"]
 [connection signal="area_entered" from="player/Area2D" to="player" method="_on_Area2D_area_entered"]
 [connection signal="button_down" from="controller/up" to="player" method="_on_up_button_down"]
 [connection signal="button_up" from="controller/up" to="player" method="_on_up_button_up"]

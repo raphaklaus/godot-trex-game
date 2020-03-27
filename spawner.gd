@@ -104,5 +104,5 @@ func select_next():
 
 
 func _on_cloud_timer_timeout():
-	if randf() > 0.2:
+	if spawn and randf() > 0.2:
 		generate_cloud()
