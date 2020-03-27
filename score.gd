@@ -15,7 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if is_scoring:
-		text = str(score).pad_zeros(5)
+		text = str(Global.game_score).pad_zeros(5)
 
 
 func _on_player_game_over():
@@ -23,4 +23,6 @@ func _on_player_game_over():
 
 func _on_Timer2_timeout():
 	if is_scoring:
-		score += 1
+		Global.game_score += 1
+		if (Global.game_score > 0 and Global.game_score % 100 == 0):
+			Global.game_speed += 100

@@ -20,6 +20,10 @@ run/main_scene="res://game.tscn"
 boot_splash/bg_color=Color( 0.870588, 0.870588, 0.870588, 1 )
 config/icon="res://assets/icon.png"
 
+[autoload]
+
+Global="*res://Global.tscn"
+
 [display]
 
 window/size/width=640

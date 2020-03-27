@@ -8,7 +8,7 @@ extends Node2D
 var velocity = Vector2()
 
 
-func init(pos, anim, velx):
+func init(pos, anim):
 	if randf() > 0.5:
 		$AnimationPlayer.play("big")
 	else:
@@ -16,11 +16,10 @@ func init(pos, anim, velx):
 
 	position.x = pos.x
 	position.y = pos.y
-	velocity.x = velx
 
 func stop():
-	velocity.x = 0
+	Global.game_speed = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.x += velocity.x * delta #velocity * delta
+	position.x += Global.game_speed * -1 * delta #velocity * delta

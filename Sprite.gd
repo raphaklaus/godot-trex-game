@@ -15,7 +15,7 @@ func _ready():
 func _process(delta):
 	if not stop:
 		region_rect = Rect2(pixel_frame, 104, 640, 26)
-		pixel_frame += 500 * delta
+		pixel_frame += Global.game_speed * delta
 
 
 func _on_player_game_over():

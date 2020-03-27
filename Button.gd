@@ -22,3 +22,4 @@ func _on_player_game_over():
 
 func _on_Button_pressed():
 	get_tree().reload_current_scene()
+	Global.start()

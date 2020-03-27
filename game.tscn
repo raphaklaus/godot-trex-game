@@ -164,11 +164,11 @@ tracks/2/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 440.423, 28.3146 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=9]
 size = 14
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 14
 font_data = ExtResource( 10 )
 
@@ -222,19 +222,9 @@ __meta__ = {
 position = Vector2( 218.522, 111.338 )
 shape = SubResource( 8 )
 
-[node name="Button" type="TextureButton" parent="."]
-margin_left = 67.1056
-margin_top = -54.5918
-margin_right = 143.106
-margin_bottom = 12.4082
-texture_normal = ExtResource( 9 )
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="controller" type="Node2D" parent="."]
 visible = false
+z_index = 4
 script = ExtResource( 12 )
 
 [node name="up" type="TextureButton" parent="controller"]
@@ -264,7 +254,7 @@ margin_left = 322.207
 margin_top = -196.864
 margin_right = 404.207
 margin_bottom = -161.864
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
 text = "SCORE"
 script = ExtResource( 11 )
@@ -277,7 +267,7 @@ margin_left = 52.8113
 margin_top = -198.369
 margin_right = 212.811
 margin_bottom = -178.369
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
 text = "HIGH SCORE"
 script = ExtResource( 13 )
@@ -312,15 +302,28 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 1074, 2, 79, 80 )
 script = ExtResource( 4 )
-[connection signal="game_over" from="player" to="spawner" method="_on_player_game_over"]
+
+[node name="pause" type="Node2D" parent="."]
+z_index = 4
+
+[node name="Button" type="TextureButton" parent="pause"]
+margin_left = 67.1056
+margin_top = -54.5918
+margin_right = 143.106
+margin_bottom = 12.4082
+texture_normal = ExtResource( 9 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="game_over" from="player" to="sun" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="floor/Sprite" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="floor" method="_on_player_game_over"]
-[connection signal="game_over" from="player" to="Button" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="spawner" method="_on_player_game_over"]
+[connection signal="game_over" from="player" to="pause/Button" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/score" method="_on_player_game_over"]
 [connection signal="game_over" from="player" to="hud/high_score" method="_on_player_game_over"]
-[connection signal="game_over" from="player" to="sun" method="_on_player_game_over"]
 [connection signal="area_entered" from="player/Area2D" to="player" method="_on_Area2D_area_entered"]
-[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
 [connection signal="button_down" from="controller/up" to="player" method="_on_up_button_down"]
 [connection signal="button_up" from="controller/up" to="player" method="_on_up_button_up"]
 [connection signal="button_down" from="controller/down" to="player" method="_on_down_button_down"]
@@ -329,3 +332,4 @@ script = ExtResource( 4 )
 [connection signal="timeout" from="score_timer" to="hud/score" method="_on_Timer2_timeout"]
 [connection signal="timeout" from="spawn_timer" to="spawner" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="cloud_timer" to="spawner" method="_on_cloud_timer_timeout"]
+[connection signal="pressed" from="pause/Button" to="pause/Button" method="_on_Button_pressed"]

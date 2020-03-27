@@ -25,6 +25,9 @@ export var spawn = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 #func _physics_process(delta):
+#	if (Global.game_score > 0 and Global.game_score % 100 == 0):
+#		print_debug(Global.game_speed)
+#		Global.game_speed += 100
 
 func _on_destroy_timer_timeout():
 	for cactus in cactuses:
@@ -77,13 +80,13 @@ func generate_starting_position():
 		
 func generate_cactus():
 	cactus_instance = cactus.instance()
-	cactus_instance.init(Vector2(900, 64), "big", 500 * -1)
+	cactus_instance.init(Vector2(900, 64), "big")
 	cactuses.append(cactus_instance)
 	add_child(cactus_instance)
 
 func generate_enemy():
 	enemy_instance = enemy.instance()
-	enemy_instance.init(generate_starting_position(), 600)
+	enemy_instance.init(generate_starting_position())
 	enemies.append(enemy_instance)
 	add_child(enemy_instance)
 
