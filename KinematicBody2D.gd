@@ -25,7 +25,7 @@ func _process(delta):
 			$AnimationPlayer.play("squatting")
 			stomping = true
 		elif Input.is_action_pressed("ui_accept") and not is_jumping:
-			#$AnimationPlayer.play("jumping"):
+			Global.play_jump_sound()
 			is_jumping = true
 			velocity.y -= JUMP_FORCE
 			print_debug("ui_accept")
@@ -60,6 +60,7 @@ func _on_down_button_down():
 func _on_down_button_up():
 	is_squatting = false
 
+var played_sound_once = false
 
 func _on_Area2D_area_entered(area):
 	var body = area.get_parent()
@@ -67,3 +68,6 @@ func _on_Area2D_area_entered(area):
 		$AnimationPlayer.play("dying")
 		emit_signal("game_over")
 		has_game_over = true
+		if not played_sound_once:
+			played_sound_once = true
+			Global.play_died_sound()
