@@ -5,13 +5,13 @@ var show_high_score = false
 func _ready():
 	visible = false
 	create_save()
+	print_debug(OS.get_user_data_dir())
 
 func _on_player_game_over():
 	visible = true
-	var score = get_parent().get_node("score").score
 	var current_high_score = load_data()
-	if score > current_high_score:
-		save_data(score)
+	if Global.game_score > current_high_score:
+		save_data(Global.game_score)
 
 	text = "HIGH SCORE: " + str(load_data()).pad_zeros(5)
 	
